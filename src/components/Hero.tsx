@@ -25,25 +25,25 @@ function Hero({ onBookingClick }: HeroProps) {
 
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      <div className={`absolute top-8 ${isRTL ? 'right-8' : 'left-8'} z-20 flex items-center gap-3 bg-white bg-opacity-10 backdrop-blur-sm px-6 py-4 rounded-lg`}>
-        <Scissors className="w-10 h-10 text-[#f6ddab]" strokeWidth={1.5} />
+      <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} z-20 flex items-center gap-2 bg-white bg-opacity-10 backdrop-blur-sm px-3 py-2 rounded-lg sm:px-6 sm:py-4 sm:gap-3`}>
+        <Scissors className="w-6 h-6 sm:w-10 sm:h-10 text-[#f6ddab]" strokeWidth={1.5} />
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-wide">
+          <h1 className="text-lg sm:text-2xl font-bold text-white tracking-wide">
             Kumar & Co.
           </h1>
-          <p className="text-sm text-[#f6ddab]">Since 1999</p>
+          <p className="text-xs sm:text-sm text-[#f6ddab]">Since 1999</p>
         </div>
       </div>
 
-      <div className={`absolute top-8 ${isRTL ? 'left-8' : 'right-8'} z-20`}>
+      <div className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'} z-20`}>
         <LanguageToggle />
       </div>
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
-        <h2 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wide">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 tracking-wide px-2">
           {t('hero.subtitle')}
         </h2>
-        <p className="text-xl md:text-2xl text-[#f6ddab] mb-8 max-w-2xl">
+        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-[#f6ddab] mb-8 max-w-2xl px-4">
           {t('hero.description')}
         </p>
         <button
