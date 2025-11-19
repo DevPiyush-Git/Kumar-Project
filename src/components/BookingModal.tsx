@@ -91,7 +91,7 @@ function BookingModal({ isOpen, onClose }: BookingModalProps) {
     };
 
     try {
-      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbxCJXxXBCDOLpIvnnLZPvWVAqHyKrHbvgZAqu0wwCUdL6zjd3Uaen4MRZ7WmJTd2ASOZQ/exec";
 
       if (scriptUrl) {
         await fetch(scriptUrl, {

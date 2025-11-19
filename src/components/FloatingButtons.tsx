@@ -3,8 +3,8 @@ import { useTranslation } from '../hooks/useTranslation';
 
 const FloatingButtons = () => {
   const { t } = useTranslation();
-  const phoneNumber = import.meta.env.VITE_PHONE_NUMBER || "+965 66283347";
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "96566283347";
+  const phoneNumber = "+96566283347";
+  const whatsappNumber = "96566283347";
 
   const handleCall = () => {
     window.open(`tel:${phoneNumber}`, "_self");
