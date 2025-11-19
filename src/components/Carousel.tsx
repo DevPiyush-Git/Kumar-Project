@@ -1,34 +1,38 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
 
   const slides = [
     {
-      image: "/carousel1.jpeg",
-      title: "Classic White Dishdasha",
-      description: "Timeless elegance for everyday wear",
+      image: "/carousel1.png",
+      title: t('carousel.slides.classic.title'),
+      description: t('carousel.slides.classic.description'),
     },
     {
-      image: "/carousel2.jpeg",
-      title: "Premium Beige Thobe",
-      description: "Sophisticated style for special occasions",
+      image: "/carousel2.png",
+      title: t('carousel.slides.premium.title'),
+      description: t('carousel.slides.premium.description'),
     },
     {
-      image: "/carousel3.jpeg",
-      title: "Formal Grey Kandura",
-      description: "Modern cut with traditional values",
+      image: "/carousel3.png",
+      title: t('carousel.slides.formal.title'),
+      description: t('carousel.slides.formal.description'),
     },
     {
-      image: "/carousel4.jpeg",
-      title: "Summer Collection",
-      description: "Lightweight fabrics for comfort",
+      image: "/carousel4.png",
+      title: t('carousel.slides.summer.title'),
+      description: t('carousel.slides.summer.description'),
     },
     {
-      image: "/carousel5.jpeg",
-      title: "Wedding Special",
-      description: "Luxurious designs for your big day",
+      image: "/carousel5.png",
+      title: t('carousel.slides.wedding.title'),
+      description: t('carousel.slides.wedding.description'),
     },
   ];
 
@@ -45,11 +49,11 @@ function Carousel() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-[#1e4620] mb-4">
-            Our Collections
+            {t('carousel.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#2d5f2e] to-[#f6ddab] mx-auto mb-6"></div>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-            Discover our exquisite range of traditional Arabic menswear
+            {t('carousel.subtitle')}
           </p>
         </div>
 
@@ -57,7 +61,7 @@ function Carousel() {
           <div className="overflow-hidden rounded-2xl shadow-2xl">
             <div
               className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              style={{ transform: `translateX(${isRTL ? currentSlide * 100 : -currentSlide * 100}%)` }}
             >
               {slides.map((slide, index) => (
                 <div key={index} className="min-w-full relative">
@@ -65,7 +69,7 @@ function Carousel() {
                     <img
                       src={slide.image}
                       alt={slide.title}
-                      className="w-full h-full object-contain bg-gray-100"
+                      className="w-full h-full object-cover bg-gray-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
@@ -84,18 +88,18 @@ function Carousel() {
 
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            className={`absolute ${isRTL ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110`}
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-6 h-6" />
+            {isRTL ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            className={`absolute ${isRTL ? 'left-4' : 'right-4'} top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110`}
             aria-label="Next slide"
           >
-            <ChevronRight className="w-6 h-6" />
+            {isRTL ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
           </button>
 
           <div className="flex justify-center gap-2 mt-6">

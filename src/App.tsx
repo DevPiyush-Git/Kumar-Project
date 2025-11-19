@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Hero from './components/Hero';
 import About from './components/About';
 import Expertise from './components/Expertise';
@@ -8,6 +9,7 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import PageLoader from './components/PageLoader';
+import FloatingButtons from './components/FloatingButtons';
 
 function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -27,19 +29,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <Hero onBookingClick={() => setIsBookingModalOpen(true)} />
-      <About />
-      <Expertise onBookingClick={() => setIsBookingModalOpen(true)} />
-      <Carousel />
-      <Measurement onBookingClick={() => setIsBookingModalOpen(true)} />
-      <Testimonials />
-      <Footer />
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-      />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-white">
+        <Hero onBookingClick={() => setIsBookingModalOpen(true)} />
+        <About />
+        <Expertise onBookingClick={() => setIsBookingModalOpen(true)} />
+        <Carousel />
+        <Measurement onBookingClick={() => setIsBookingModalOpen(true)} />
+        <Testimonials />
+        <Footer />
+        <BookingModal
+          isOpen={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
+        />
+        <FloatingButtons />
+      </div>
+    </LanguageProvider>
   );
 }
 

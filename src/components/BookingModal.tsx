@@ -9,6 +9,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import Loader from './Loader';
+import { sanitizeInput, validatePhone, validateEmail, rateLimiter } from '../utils/security';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -51,13 +52,13 @@ function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
-    } else if (!/^[\d\s+()-]+$/.test(formData.phone)) {
+    } else if (!validatePhone(formData.phone)) {
       newErrors.phone = "Invalid phone number";
     }
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!validateEmail(formData.email)) {
       newErrors.email = "Invalid email address";
     }
 
@@ -90,20 +91,21 @@ function BookingModal({ isOpen, onClose }: BookingModalProps) {
     };
 
     try {
-      // Replace with your Google Apps Script Web App URL
-      const scriptUrl =
-        "https://script.google.com/macros/s/AKfycbxCJXxXBCDOLpIvnnLZPvWVAqHyKrHbvgZAqu0wwCUdL6zjd3Uaen4MRZ7WmJTd2ASOZQ/exec";
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
-      await fetch(scriptUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submissionData),
-      });
-
-      console.log("Data sent to Google Sheets");
+      if (scriptUrl) {
+        await fetch(scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(submissionData),
+        });
+        console.log("Data sent to Google Sheets");
+      } else {
+        throw new Error("Google Script URL not configured");
+      }
     } catch (error) {
       console.error("Error saving to Google Sheets:", error);
       // Fallback: save to localStorage
@@ -117,9 +119,26 @@ function BookingModal({ isOpen, onClose }: BookingModalProps) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    // Rate limiting check
+    const userIdentifier = formData.email || formData.phone;
+    if (!rateLimiter.canSubmit(userIdentifier)) {
+      setErrors({ email: "Too many attempts. Please try again in 15 minutes." });
+      return;
+    }
+
     if (validateForm()) {
       setIsLoading(true);
-      await saveToGoogleSheets(formData);
+      
+      // Sanitize form data before submission
+      const sanitizedData = {
+        ...formData,
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        address: sanitizeInput(formData.address),
+        message: sanitizeInput(formData.message)
+      };
+      
+      await saveToGoogleSheets(sanitizedData);
       setIsLoading(false);
       setIsSubmitted(true);
       setTimeout(() => {

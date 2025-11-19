@@ -1,29 +1,33 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function Testimonials() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
 
   const testimonials = [
     {
-      name: "Ahmed Al Maktoum",
-      role: "Business Executive",
+      name: t('testimonials.clients.ahmed.name'),
+      role: t('testimonials.clients.ahmed.role'),
       video: "https://images.pexels.com/videos/5377700/free-video-5377700.mp4",
-      quote: "26 years of excellence speaks for itself. The quality and attention to detail in every dishdasha is exceptional. I've been a loyal customer for over 10 years.",
+      quote: t('testimonials.clients.ahmed.quote'),
       image: "https://images.pexels.com/photos/8090168/pexels-photo-8090168.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Mohammed Al Hashimi",
-      role: "Entrepreneur",
+      name: t('testimonials.clients.mohammed.name'),
+      role: t('testimonials.clients.mohammed.role'),
       video: "https://images.pexels.com/videos/5377700/free-video-5377700.mp4",
-      quote: "The craftsmanship is unmatched. They understand the perfect fit and the cultural significance of every stitch. Highly recommended for anyone seeking authentic Arabic tailoring.",
+      quote: t('testimonials.clients.mohammed.quote'),
       image: "https://images.pexels.com/photos/8090171/pexels-photo-8090171.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Khalid Al Mansouri",
-      role: "Government Official",
+      name: t('testimonials.clients.khalid.name'),
+      role: t('testimonials.clients.khalid.role'),
       video: "https://images.pexels.com/videos/5377700/free-video-5377700.mp4",
-      quote: "For special occasions, I trust only Heritage Tailors. Their attention to detail and use of premium fabrics make every garment a masterpiece. True artisans.",
+      quote: t('testimonials.clients.khalid.quote'),
       image: "https://images.pexels.com/photos/8090169/pexels-photo-8090169.jpeg?auto=compress&cs=tinysrgb&w=400"
     }
   ];
@@ -40,10 +44,10 @@ function Testimonials() {
     <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-[#f6ddab]/20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1e4620] mb-4">Client Testimonials</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1e4620] mb-4">{t('testimonials.title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#2d5f2e] to-[#f6ddab] mx-auto mb-6"></div>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-            Hear what our valued clients say about our service
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
@@ -51,7 +55,7 @@ function Testimonials() {
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+              style={{ transform: `translateX(${isRTL ? currentTestimonial * 100 : -currentTestimonial * 100}%)` }}
             >
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="min-w-full px-4">
@@ -97,18 +101,18 @@ function Testimonials() {
 
           <button
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white hover:bg-[#f6ddab] text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10"
+            className={`absolute ${isRTL ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 bg-white hover:bg-[#f6ddab] text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10`}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="w-6 h-6" />
+            {isRTL ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
           </button>
 
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white hover:bg-[#f6ddab] text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10"
+            className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-1/2 -translate-y-1/2 bg-white hover:bg-[#f6ddab] text-[#1e4620] p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10`}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="w-6 h-6" />
+            {isRTL ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
           </button>
 
           <div className="flex justify-center gap-2 mt-8">

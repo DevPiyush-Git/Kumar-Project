@@ -1,37 +1,36 @@
 import { Sparkles, Ruler, Shirt, Palette } from "lucide-react";
+import { useTranslation } from '../hooks/useTranslation';
 
 interface ExpertiseProps {
   onBookingClick: () => void;
 }
 
 function Expertise({ onBookingClick }: ExpertiseProps) {
+  const { t } = useTranslation();
+  
   const expertiseItems = [
     {
       icon: <Shirt className="w-12 h-12" />,
-      title: "Traditional Dishdasha",
-      description:
-        "Expert craftsmanship in classic and modern dishdasha styles with perfect fit and finish",
+      title: t('services.custom.title'),
+      description: t('services.custom.description'),
       image: "/expertise1.jpg",
     },
     {
       icon: <Ruler className="w-12 h-12" />,
-      title: "Custom Measurements",
-      description:
-        "Precise measuring techniques ensuring your garment fits like it was made just for you",
-      image: "/expertise2.jpg",
+      title: t('services.alterations.title'),
+      description: t('services.alterations.description'),
+      image: "/expertise2.png",
     },
     {
       icon: <Palette className="w-12 h-12" />,
-      title: "Premium Fabrics",
-      description:
-        "Finest selection of imported fabrics from around the world for ultimate comfort",
-      image: "/expertise3.jpg",
+      title: t('services.express.title'),
+      description: t('services.express.description'),
+      image: "/expertise3.png",
     },
     {
       icon: <Sparkles className="w-12 h-12" />,
-      title: "Special Occasions",
-      description:
-        "Bespoke designs for weddings, Eid, and special celebrations with intricate detailing",
+      title: t('services.premium.title'),
+      description: t('services.premium.description'),
       image: "/expertise4.jpg",
     },
   ];
@@ -41,12 +40,11 @@ function Expertise({ onBookingClick }: ExpertiseProps) {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Our Expertise
+            {t('services.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#f6ddab] to-[#d4af37] mx-auto mb-6"></div>
           <p className="text-[#f6ddab] text-lg max-w-2xl mx-auto">
-            Master tailors specializing in the art of Arabic menswear with
-            unparalleled attention to detail
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -77,7 +75,7 @@ function Expertise({ onBookingClick }: ExpertiseProps) {
                   onClick={onBookingClick}
                   className="bg-gradient-to-r from-[#2d5f2e] to-[#1e4620] hover:from-[#3a7a3c] hover:to-[#2d5f2e] text-white px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg border border-[#f6ddab]"
                 >
-                  Book Appointment
+                  {t('hero.bookAppointment')}
                 </button>
               </div>
             </div>

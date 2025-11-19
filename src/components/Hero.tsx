@@ -1,10 +1,16 @@
 import { Scissors } from "lucide-react";
+import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageToggle from './LanguageToggle';
 
 interface HeroProps {
   onBookingClick: () => void;
 }
 
 function Hero({ onBookingClick }: HeroProps) {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
+
   return (
     <section className="relative h-screen overflow-hidden">
       <video
@@ -19,7 +25,7 @@ function Hero({ onBookingClick }: HeroProps) {
 
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      <div className="absolute top-8 left-8 z-20 flex items-center gap-3 bg-white bg-opacity-10 backdrop-blur-sm px-6 py-4 rounded-lg">
+      <div className={`absolute top-8 ${isRTL ? 'right-8' : 'left-8'} z-20 flex items-center gap-3 bg-white bg-opacity-10 backdrop-blur-sm px-6 py-4 rounded-lg`}>
         <Scissors className="w-10 h-10 text-[#f6ddab]" strokeWidth={1.5} />
         <div>
           <h1 className="text-2xl font-bold text-white tracking-wide">
@@ -29,18 +35,22 @@ function Hero({ onBookingClick }: HeroProps) {
         </div>
       </div>
 
+      <div className={`absolute top-8 ${isRTL ? 'left-8' : 'right-8'} z-20`}>
+        <LanguageToggle />
+      </div>
+
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
         <h2 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wide">
-          26 Years of Excellence
+          {t('hero.subtitle')}
         </h2>
         <p className="text-xl md:text-2xl text-[#f6ddab] mb-8 max-w-2xl">
-          Crafting Traditional Arabic Menswear with Unmatched Precision
+          {t('hero.description')}
         </p>
         <button
           onClick={onBookingClick}
           className="bg-gradient-to-r from-[#2d5f2e] to-[#1e4620] hover:from-[#3a7a3c] hover:to-[#2d5f2e] text-white px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl border border-[#f6ddab]"
         >
-          Book Your Appointment
+          {t('hero.bookAppointment')}
         </button>
       </div>
 

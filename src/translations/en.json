@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Traditional Tailoring Excellence",
+    "subtitle": "26 Years of Arabic Menswear Craftsmanship",
+    "description": "Authentic tailoring with Kumar & Co. Premium thobes and dishdashas crafted just for you.",
+    "bookAppointment": "Book Appointment",
+    "viewGallery": "View Gallery"
+  },
+  "carousel": {
+    "title": "Our Collections",
+    "subtitle": "Discover our exquisite range of traditional Arabic menswear",
+    "slides": {
+      "classic": {
+        "title": "Classic White Dishdasha",
+        "description": "Timeless elegance for everyday wear"
+      },
+      "premium": {
+        "title": "Premium Beige Thobe",
+        "description": "Sophisticated style for special occasions"
+      },
+      "formal": {
+        "title": "Formal Grey Kandura",
+        "description": "Modern cut with traditional values"
+      },
+      "summer": {
+        "title": "Summer Collection",
+        "description": "Lightweight fabrics for comfort"
+      },
+      "wedding": {
+        "title": "Wedding Special",
+        "description": "Luxurious designs for your big day"
+      }
+    }
+  },
+  "measurement": {
+    "title": "Precision in Every Measurement",
+    "description": "Our master tailors use time-honored techniques to ensure your garment fits perfectly. Experience the difference that 26 years of expertise makes.",
+    "button": "Schedule Your Fitting",
+    "stats": {
+      "measurements": "Measurement Points",
+      "express": "Express Service Available",
+      "satisfaction": "Satisfaction Guaranteed"
+    }
+  },
+  "services": {
+    "title": "Our Specialized Services",
+    "subtitle": "Comprehensive tailoring solutions tailored to your needs",
+    "custom": {
+      "title": "Custom Tailoring",
+      "description": "Bespoke garments crafted to your exact measurements and preferences"
+    },
+    "alterations": {
+      "title": "Alterations & Repairs",
+      "description": "Professional alteration services to ensure the perfect fit"
+    },
+    "express": {
+      "title": "Express Service",
+      "description": "Rush tailoring service for urgent occasions"
+    },
+    "premium": {
+      "title": "Premium Collection",
+      "description": "Luxury fabrics and designs for special occasions"
+    }
+  },
+  "about": {
+    "title": "A Heritage of Excellence",
+    "subtitle": "26 Years of Craftsmanship and Quality",
+    "description": "Since 1999, we have been serving the Kuwait community with the finest traditional tailoring services. Our team of skilled artisans combines time-honored techniques with modern precision to create exceptional garments.",
+    "stats": {
+      "experience": "Years Experience",
+      "customers": "Happy Customers",
+      "garments": "Garments Crafted"
+    }
+  },
+  "footer": {
+    "title": "Heritage Tailors",
+    "description": "Celebrating 26 years of excellence in traditional Arabic menswear tailoring. Your trusted partner for quality and authenticity.",
+    "contact": "Contact Us",
+    "followUs": "Follow Us",
+    "businessHours": "Business Hours",
+    "hours": {
+      "weekdays": "Saturday - Thursday: 9:00 AM - 9:00 PM",
+      "friday": "Friday: 2:00 PM - 9:00 PM"
+    },
+    "copyright": "© {year} Kumar & Co. All rights reserved. | 26 Years of Excellence Since 1999"
+  },
+  "floating": {
+    "whatsapp": "WhatsApp",
+    "call": "Call Now"
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "Hear what our valued clients say about our service",
+    "clients": {
+      "ahmed": {
+        "name": "Ahmed Al Maktoum",
+        "role": "Business Executive",
+        "quote": "26 years of excellence speaks for itself. The quality and attention to detail in every dishdasha is exceptional. I've been a loyal customer for over 10 years."
+      },
+      "mohammed": {
+        "name": "Mohammed Al Hashimi",
+        "role": "Entrepreneur",
+        "quote": "The craftsmanship is unmatched. They understand the perfect fit and the cultural significance of every stitch. Highly recommended for anyone seeking authentic Arabic tailoring."
+      },
+      "khalid": {
+        "name": "Khalid Al Mansouri",
+        "role": "Government Official",
+        "quote": "For special occasions, I trust only Heritage Tailors. Their attention to detail and use of premium fabrics make every garment a masterpiece. True artisans."
+      }
+    }
+  }
+}
